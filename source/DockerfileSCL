@@ -1,0 +1,19 @@
+# Utiliser l'image officielle Python
+FROM python:3.9-slim
+
+# Définir le répertoire de travail
+WORKDIR /app
+
+# Copier le script Python et les dépendances
+COPY SenderCapteurLumiere.py .
+COPY CapteurLumiere.py .
+COPY requirements.txt .
+
+# Installer les dépendances
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Exposer les ports si nécessaire (ex. 5672 pour RabbitMQ)
+EXPOSE 5672
+
+# Commande pour exécuter le script
+CMD ["python3", "SenderCapteurLumiere.py"]
